@@ -1,0 +1,62 @@
+[
+  {
+    "id": "evt-transition-014",
+    "setting": "assisted living",
+    "event_type": "transition handoff",
+    "occurred_on": "2026-02-11",
+    "reported_on": "2026-02-12",
+    "status": "investigating",
+    "summary": "Checklist ownership was unclear after a synthetic discharge transition.",
+    "synthetic": true,
+    "communication_preference": "large-print written update",
+    "access_barrier": "handoff timing",
+    "investigation": {
+      "established_facts": ["Synthetic handoff timestamp preceded the receiving shift change.", "The checklist has no explicit receiving-role field in this scenario."],
+      "hypotheses": ["A single assigned role may reduce queue ambiguity."],
+      "open_questions": ["Would a single queue add duplicate documentation?", "How should a resident's preferred communication format be carried forward?"],
+      "five_whys": ["The checklist was late.", "No owner was visible in the handoff.", "The form did not require a receiving role.", "Ownership conventions differed by setting.", "The workflow has no shared role-to-queue standard."],
+      "cause_categories": {"people": ["Shift handoff timing"], "process": ["No explicit receiving-role field"], "technology": ["Separate queue views"], "environment": ["Three distinct setting workflows"]},
+      "findings": ["Human-authored working finding: role ambiguity is a testable systems contributor; not a definitive root cause."]
+    }
+  },
+  {
+    "id": "evt-medlist-009",
+    "setting": "group home",
+    "event_type": "medication-list discrepancy",
+    "occurred_on": "2026-02-18",
+    "reported_on": "2026-02-18",
+    "status": "reported",
+    "summary": "Two synthetic transition records contained different medication-list versions.",
+    "synthetic": true,
+    "communication_preference": "phone call with support person",
+    "access_barrier": "document access",
+    "investigation": {
+      "established_facts": ["Two synthetic records have different timestamps."],
+      "hypotheses": ["Version labeling could improve reconciliation visibility."],
+      "open_questions": ["Which handoff step introduced the mismatch?"],
+      "five_whys": [],
+      "cause_categories": {},
+      "findings": []
+    }
+  },
+  {
+    "id": "evt-nearmiss-021",
+    "setting": "independent living",
+    "event_type": "near miss",
+    "occurred_on": "2026-02-25",
+    "reported_on": "2026-02-26",
+    "status": "reported",
+    "summary": "A synthetic checklist task was noticed as a duplicate before review.",
+    "synthetic": true,
+    "communication_preference": "accessible email summary",
+    "access_barrier": "task duplication",
+    "investigation": {
+      "established_facts": ["A duplicate synthetic task was identified before review."],
+      "hypotheses": ["Queue handoff may have created duplicate ownership."],
+      "open_questions": ["Can the proposed workflow expose existing ownership before creating another task?"],
+      "five_whys": [],
+      "cause_categories": {},
+      "findings": []
+    }
+  }
+]
