@@ -6,8 +6,9 @@ CareLoop Safety is a synthetic-only patient-safety and process-improvement progr
 
 ## Status and evidence
 
-- The local backend tests and frontend production build were run in this workspace; current results are recorded in the accompanying CI workflow when it runs against a commit.
-- No Railway services, public URLs, production database, clinician approvals, user research, stakeholder meetings, or cross-functional execution are claimed.
+- The backend tests and frontend production build passed locally; the backend CI import-path fix is included in commit `f78c434`.
+- The synthetic demo is deployed to Railway: [frontend](https://frontend-production-bf4a0.up.railway.app) and [backend health](https://backend-production-e254.up.railway.app/health). Railway PostgreSQL is attached. These services were deployed from local CLI uploads and are not yet connected to GitHub auto-deploy.
+- No clinician approvals, user research, stakeholder meetings, or cross-functional execution are claimed.
 - All event, measure, role, feedback, and project records supplied by the demo seed are fictional and constructed. They are not empirical findings or evidence of causality.
 - The demonstration uses a 48-hour process window and a 72-hour discrepancy checkpoint solely as fixed example definitions; neither is a clinical protocol.
 
@@ -58,7 +59,7 @@ These are local mobile-width captures of the synthetic demo, not a deployed serv
 
 ## Railway deployment
 
-Create three services: PostgreSQL, backend, and frontend. Set the backend root directory to `/backend` and frontend root directory to `/frontend`.
+The live project currently has three services: PostgreSQL, backend, and frontend. The backend was uploaded from `backend/` and frontend from `frontend/`, each using its Dockerfile. For GitHub auto-deploy, connect both application services to `jems0906/CareLoop-Safety` on `main` and configure service root directories `/backend` and `/frontend` respectively.
 
 1. Attach PostgreSQL and map its connection string to `DATABASE_URL`. The backend normalizes Railway's `postgres://` and `postgresql://` schemes to `postgresql+psycopg://`.
 2. Set backend `APP_ENV=production`, a strong private `ADMIN_API_KEY`, and `CORS_ORIGINS` to the exact frontend HTTPS origin (no wildcard, path, or trailing slash). Keep `DATABASE_URL` private.
@@ -66,7 +67,7 @@ Create three services: PostgreSQL, backend, and frontend. Set the backend root d
 4. Set frontend build argument `VITE_API_URL` to the backend's full HTTPS origin. It contains no credentials. Expose port 8080; set the frontend public-domain target to 8080. Nginx serves the SPA and falls back to `index.html` for deep-link refresh.
 5. After deploy, verify CORS preflight from the exact frontend origin, migrations, backend health, a frontend deep-link refresh, process restart persistence, read-only anonymous behavior, and gated admin writes. Do not add real data.
 
-These are deployment instructions, not a tested Railway deployment. No live URL is available until someone configures and verifies those services.
+Verified on the current deployment: migrations and synthetic seeding completed; backend health returns `200`; exact-origin CORS preflight succeeds; the frontend and measurement deep link render; anonymous event writes return `403`; and the seeded PostgreSQL records remain after a backend restart. No real data was used. GitHub auto-deploy is not configured yet.
 
 ## Quality checks
 
