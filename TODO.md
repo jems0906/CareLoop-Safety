@@ -4,4 +4,4 @@
 - [x] Add durable database/migration setup, synthetic fixtures and seed, Docker/Compose and Railway configuration, and CI workflow.
 - [x] Add portfolio artifacts and data dictionary; verify backend tests, frontend build, migrations/seeding, Compose configuration, and local browser workflows.
 
-**Status: 3/3 implementation tasks complete.** Railway deployment and public URLs remain pending external credentials and service configuration; they are not represented as completed here.
+**Status: 3/3 implementation tasks complete.** The app is deployed to Railway with public frontend/backend URLs and PostgreSQL. GitHub auto-deploy is not connected; deployments currently use local CLI uploads.
